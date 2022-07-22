@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace ProjectMahasiswa
     class Program
     {
         // deklarasi objek collection untuk menampung objek mahasiswa
-        static List<string> daftarMahasiswa = new List<string>();
+        static List<Mahasiswa> daftarMahasiswa = new List<Mahasiswa>();
 
         static void Main(string[] args)
         {
@@ -57,16 +57,26 @@ namespace ProjectMahasiswa
             // PERINTAH: lengkapi kode untuk menambahkan objek mahasiswa ke dalam collection
             Mahasiswa mhs = new Mahasiswa();
 
-            Console.Write("Nim    : ");
+            Console.Write("Nim                : ");
             mhs.Nim = Console.ReadLine();
-            Console.Write(" Nama  : ");
+            Console.Write("Nama               : ");
             mhs.Nama = Console.ReadLine();
             Console.Write("Jenis Kelamin(L/P) : ");
             mhs.JenisKelamin= Console.ReadLine();
-            Console.Write("IPK : ");
+            if (mhs.JenisKelamin == "L")
+            {
+                mhs.JenisKelamin = "Laki-Laki";
+            }
+            else if (mhs.JenisKelamin == "P")
+            {
+                mhs.JenisKelamin = "Perempuan";
+            }
+            
+            Console.Write("IPK                : ");
             mhs.IPK = Console.ReadLine();
             Console.WriteLine();
 
+            daftarMahasiswa.Add(mhs);
             Console.WriteLine("\nTekan ENTER untuk kembali ke menu");
             Console.ReadKey();
         }
@@ -74,14 +84,15 @@ namespace ProjectMahasiswa
         static void TampilMahasiswa()
         {
             Console.Clear();
-            Mahasiswa mhs = new Mahasiswa();
+            Console.WriteLine("Data Mahasiswa\n");
+            int no = 1;
             // PERINTAH: lengkapi kode untuk menampilkan daftar mahasiswa yang ada di dalam collection
-            List<Mahasiswa> list = new List<Mahasiswa>();
-            list.Add(mhs);
-            Console.WriteLine(mhs.Nim);
-            Console.WriteLine(mhs.Nama);
-            Console.WriteLine(mhs.JenisKelamin);
-            Console.WriteLine(mhs.IPK);
+            Console.WriteLine("No\tNIM\tNama \tJenis Kelamin\tIPK");
+            foreach (Mahasiswa mhs in daftarMahasiswa)
+            {
+                Console.WriteLine("{0}.\t{1}\t{2} \t{3}\t{4}", no,mhs.Nim,mhs.Nama,mhs.JenisKelamin,mhs.IPK);
+                no++;
+            }
 
             Console.WriteLine("\nTekan enter untuk kembali ke menu");
             Console.ReadKey();
